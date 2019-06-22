@@ -1,0 +1,18 @@
+{
+  "connection": "default",
+  "collectionName": "teams",
+  "info": {
+    "name": "team",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "comment": ""
+  },
+  "attributes": {
+    "Name": {
+      "type": "string"
+    }
+  }
+}

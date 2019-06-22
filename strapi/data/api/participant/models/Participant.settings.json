@@ -1,0 +1,37 @@
+{
+  "connection": "default",
+  "collectionName": "participants",
+  "info": {
+    "name": "participant",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "comment": ""
+  },
+  "attributes": {
+    "FirstName": {
+      "type": "string"
+    },
+    "Email": {
+      "type": "email"
+    },
+    "Company": {
+      "model": "company"
+    },
+    "LastName": {
+      "type": "string"
+    },
+    "Team": {
+      "model": "team"
+    },
+    "Gender": {
+      "enum": [
+        "Male",
+        "Female"
+      ],
+      "type": "enumeration"
+    }
+  }
+}

@@ -1,0 +1,22 @@
+@import '../../styles';
+
+#home-page {
+    // background: map-get($colors, blue);
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    form {
+      input, span {
+        display: block;
+        margin-bottom: 8px;
+      }
+    }
+
+    .error {
+      color: red;
+    }
+}
+

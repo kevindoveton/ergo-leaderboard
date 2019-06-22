@@ -1,0 +1,24 @@
+{
+  "connection": "default",
+  "collectionName": "times",
+  "info": {
+    "name": "time",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "comment": ""
+  },
+  "attributes": {
+    "Time": {
+      "type": "float"
+    },
+    "Event": {
+      "model": "event"
+    },
+    "Participant": {
+      "model": "participant"
+    }
+  }
+}

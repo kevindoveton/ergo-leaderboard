@@ -1,0 +1,28 @@
+<div class="page" id="signup-page">
+
+  <div class="title">
+    Welcome to {{eventName}}
+  </div>
+
+  <div class="body">
+    <div class="logo-client">
+      <img src="./assets/logo.jpg" alt="" class="logo">
+    </div>
+
+    <form #signupForm="ngForm" (ngSubmit)="submit()">
+      <input class="name" name="firstName" placeholder="First Name" type="text" />
+      <input class="name" name="lastName" placeholder="Last Name" type="text" />
+      <button (click)="setCategory(0)">Male</button>
+      <button (click)="setCategory(1)">Female</button>
+      <input type="text" name="team" placeholder="Team / Company">
+      <input type="number" name="time" placeholder="Time">
+      <input class="email" name="email" placeholder="Email" type="text" />
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <div class="logo-host">
+      <img src="./assets/logo.jpg" alt="" class="logo">
+    </div>
+  </div>
+</div>

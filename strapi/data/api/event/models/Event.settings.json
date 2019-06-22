@@ -1,0 +1,27 @@
+{
+  "connection": "default",
+  "collectionName": "events",
+  "info": {
+    "name": "event",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "comment": ""
+  },
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "Date": {
+      "type": "date"
+    },
+    "HostCompany": {
+      "model": "company"
+    },
+    "Client": {
+      "model": "company"
+    }
+  }
+}

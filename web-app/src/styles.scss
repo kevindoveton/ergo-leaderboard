@@ -1,0 +1,16 @@
+$colors: (
+  blue: #0037ff
+);
+
+html {
+  background: map-get($colors, blue);
+}
+
+html,
+body,
+router-outlet {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
