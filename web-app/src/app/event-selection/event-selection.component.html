@@ -1,3 +1,9 @@
-<p>
-  event-selection works!
-</p>
+<div class="page" id="event-selection-page">
+  <button class="tv">TV</button>
+  <button class="app">App</button>
+
+  <ng-container *ngFor="let event of events">
+    <app-event [event]="event" (click)="selectEvent(event.id)"></app-event>
+  </ng-container>
+
+</div>

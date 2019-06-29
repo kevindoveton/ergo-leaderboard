@@ -13,6 +13,9 @@
   "attributes": {
     "Name": {
       "type": "string"
+    },
+    "Event": {
+      "model": "event"
     }
   }
 }

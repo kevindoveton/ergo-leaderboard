@@ -1,10 +1,15 @@
 #signup-page{
-  // background: map-get($colors, blue);
   height: 100%;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+
+  .body {
+    max-width: 720px;
+    width: 90%;
+  }
 
   .logo {
     position: absolute;
@@ -12,10 +17,5 @@
     right: 16px;
   }
 
-  form {
-    input {
-      display: block;
-      margin-bottom: 8px;
-    }
-  }
+
 }

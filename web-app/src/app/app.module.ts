@@ -12,6 +12,8 @@ import { SignupCompleteComponent } from './signup-complete/signup-complete.compo
 import { SignupComponent } from './signup/signup.component';
 import { FormsModule } from '@angular/forms';
 import { EventSelectionComponent } from './event-selection/event-selection.component';
+import { TvCategoryComponent } from './tv-category/tv-category.component';
+import { EventComponent } from './event/event.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { EventSelectionComponent } from './event-selection/event-selection.compo
     TvComponent,
     SignupCompleteComponent,
     SignupComponent,
-    EventSelectionComponent
+    EventSelectionComponent,
+    TvCategoryComponent,
+    EventComponent
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],

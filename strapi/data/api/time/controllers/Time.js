@@ -7,7 +7,6 @@
  */
 
 module.exports = {
-
   /**
    * Retrieve time records.
    *
@@ -28,7 +27,7 @@ module.exports = {
    * @return {Object}
    */
 
-  findOne: async (ctx) => {
+  findOne: async ctx => {
     return strapi.services.time.fetch(ctx.params);
   },
 
@@ -48,7 +47,7 @@ module.exports = {
    * @return {Object}
    */
 
-  create: async (ctx) => {
+  create: async ctx => {
     return strapi.services.time.add(ctx.request.body);
   },
 
@@ -59,7 +58,7 @@ module.exports = {
    */
 
   update: async (ctx, next) => {
-    return strapi.services.time.edit(ctx.params, ctx.request.body) ;
+    return strapi.services.time.edit(ctx.params, ctx.request.body);
   },
 
   /**

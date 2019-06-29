@@ -12,7 +12,8 @@
   },
   "attributes": {
     "Name": {
-      "type": "string"
+      "type": "string",
+      "unique": true
     },
     "Date": {
       "type": "date"

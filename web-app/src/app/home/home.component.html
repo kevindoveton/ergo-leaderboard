@@ -1,9 +1,7 @@
 <div class="page" id="home-page">
-  <form (ngSubmit)="login()" #loginForm="ngForm">
+  <form (ngSubmit)="login()" #loginForm="ngForm" [ngClass]="{error: error}">
     <input type="text" placeholder="Username" name="username" [(ngModel)]="username" />
     <input type="password" placeholder="Password" name="password" [(ngModel)]="password" />
     <button type="submit">Login</button>
-
-    <span class="error" *ngIf="error">Username or Password is incorrect</span>
   </form>
 </div>

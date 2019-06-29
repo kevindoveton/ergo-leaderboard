@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
       this.error = !el;
 
       if (el) {
-        this.router.navigate(['/signup']);
+        this.router.navigate(['/event']);
       }
     });
   }

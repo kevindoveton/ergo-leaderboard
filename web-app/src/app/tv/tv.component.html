@@ -1,24 +1,22 @@
 <div class="page" id="tv-page">
   <div class="title">
-    {{eventName}}<br>
+    {{event?.Name}}<br>
     Leaderboard <br>
     <img src="https://placehold.it/350x150" />
   </div>
 
   <div class="categories">
-    <div class="category">
-      Fastest Female
-      Amelia Doveton
-    </div>
-    <div class="category">
-      Fastest Female
-      Amelia Doveton
-      12.8
-    </div>
-    <div class="category">
-      Winning Team
-      Team Doveton
-      12.89
-    </div>
+    <ng-container *ngFor="let participant of fastest.Male">
+      <app-tv-category category="Fastest Male" [firstName]="participant.Participant.FirstName"
+        [lastName]="participant.Participant.LastName" [time]="participant.Time"></app-tv-category>
+    </ng-container>
+
+    <ng-container *ngFor="let participant of fastest.Female">
+      <app-tv-category category="Fastest Female" [firstName]="participant.Participant.FirstName"
+        [lastName]="participant.Participant.LastName" [time]="participant.Time"></app-tv-category>
+    </ng-container>
+
+    <ng-container *ngFor="let team of fastest.Team">
+      <app-tv-category category="Winning Team" [firstName]="team.Team.Name" [time]="team.Count"></app-tv-category>
+    </ng-container>
   </div>
-</div>

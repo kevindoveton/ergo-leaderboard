@@ -1,7 +1,7 @@
 <div class="page" id="signup-page">
 
   <div class="title">
-    Welcome to {{eventName}}
+    Welcome to {{event?.Name}}
   </div>
 
   <div class="body">
@@ -10,13 +10,21 @@
     </div>
 
     <form #signupForm="ngForm" (ngSubmit)="submit()">
-      <input class="name" name="firstName" placeholder="First Name" type="text" />
-      <input class="name" name="lastName" placeholder="Last Name" type="text" />
-      <button (click)="setCategory(0)">Male</button>
-      <button (click)="setCategory(1)">Female</button>
-      <input type="text" name="team" placeholder="Team / Company">
-      <input type="number" name="time" placeholder="Time">
-      <input class="email" name="email" placeholder="Email" type="text" />
+      <input class="name" [(ngModel)]="details.firstName" class="half" name="firstName" placeholder="First Name"
+        type="text" />
+      <input class="name" [(ngModel)]="details.lastName" class="half" name="lastName" placeholder="Last Name"
+        type="text" />
+
+      <button type="button" (click)="setCategory(0)" [ngClass]="{selected: details.gender === 'Male'}"
+        class="half">Male</button>
+      <button type="button" (click)="setCategory(1)" [ngClass]="{selected: details.gender === 'Female'}"
+        class="half">Female</button>
+
+      <input type="text" [(ngModel)]="details.team" name="team" placeholder="Team / Company" class="full">
+
+      <input type="number" [(ngModel)]="details.time" step="0.01" name="time" placeholder="Time" class="full"
+        pattern="^\d*(\.\d{0,2})?$">
+      <input class="email" [(ngModel)]="details.email" name="email" placeholder="Email" type="email" class="full" />
 
       <button type="submit">Submit</button>
     </form>
