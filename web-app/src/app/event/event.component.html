@@ -1,3 +1,11 @@
 <div class="event">
   {{event.Name}}
+
+  <button class="signup" (click)="signupClick.emit($event)">
+    Signup
+  </button>
+
+  <button class="tv" (click)="tvClick.emit($event)">
+    TV
+  </button>
 </div>

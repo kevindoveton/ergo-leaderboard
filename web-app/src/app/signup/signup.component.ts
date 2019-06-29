@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService, IEvent } from '../api.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { take } from 'rxjs/operators';
 
 @Component({
@@ -9,7 +9,11 @@ import { take } from 'rxjs/operators';
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
-  constructor(private api: ApiService, private route: ActivatedRoute) {}
+  constructor(
+    private api: ApiService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   event: IEvent;
   details = {
@@ -17,7 +21,7 @@ export class SignupComponent implements OnInit {
     lastName: '',
     category: 0,
     team: '',
-    time: 0,
+    time: 15.0,
     email: '',
     gender: 'Male',
     event: 0
@@ -52,6 +56,10 @@ export class SignupComponent implements OnInit {
       )
       .subscribe(val => {
         console.log(val);
+        this.router.navigate([
+          'event/:id/signup/complete',
+          { id: this.event.id }
+        ]);
       });
   }
 }

@@ -48,6 +48,23 @@ module.exports = {
    */
 
   create: async ctx => {
+    const participant = await strapi.services.participant.fetch({
+      id: ctx.request.body.Participant
+    });
+    const event = await strapi.services.event.fetch({
+      id: ctx.request.body.Event
+    });
+    strapi.emitToAllUsers({
+      Participant: participant.attributes,
+      Time: ctx.request.body.Time,
+      Event: event.attributes
+    });
+    console.log({
+      Participant: participant.attributes,
+      Time: ctx.request.body.Time,
+      Event: event.attributes
+    });
+
     return strapi.services.time.add(ctx.request.body);
   },
 

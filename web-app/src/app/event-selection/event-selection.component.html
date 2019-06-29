@@ -1,9 +1,6 @@
 <div class="page" id="event-selection-page">
-  <button class="tv">TV</button>
-  <button class="app">App</button>
 
   <ng-container *ngFor="let event of events">
-    <app-event [event]="event" (click)="selectEvent(event.id)"></app-event>
+    <app-event [event]="event" (signupClick)="selectEvent(event.id)" (tvClick)="selectTvEvent(event.id)"></app-event>
   </ng-container>
-
 </div>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService, IEvent, ITime, ITeam } from '../api.service';
 import { ActivatedRoute } from '@angular/router';
 import { take } from 'rxjs/operators';
+import { SocketsService } from '../sockets.service';
 
 @Component({
   selector: 'app-tv',
@@ -9,7 +10,11 @@ import { take } from 'rxjs/operators';
   styleUrls: ['./tv.component.scss']
 })
 export class TvComponent implements OnInit {
-  constructor(private api: ApiService, private route: ActivatedRoute) {}
+  constructor(
+    private api: ApiService,
+    private route: ActivatedRoute,
+    private socket: SocketsService
+  ) {}
 
   event: IEvent;
   times: ITime[];
@@ -17,6 +22,12 @@ export class TvComponent implements OnInit {
   fastest: IFastest = this.initFastest();
 
   ngOnInit() {
+    this.socket.time().subscribe(el => {
+      console.log(this.times);
+      this.times.push(el);
+      this.updateTimes();
+    });
+
     this.route.params.pipe(take(1)).subscribe((params: IParams) => {
       this.api
         .getEvent(params.id)
@@ -27,9 +38,10 @@ export class TvComponent implements OnInit {
 
       this.updateLeaderboard(params.id);
 
+      // full refresh every 60 seconds
       setInterval(() => {
         this.updateLeaderboard(params.id);
-      }, 1000 * 10);
+      }, 1000 * 60);
     });
   }
 
@@ -48,12 +60,7 @@ export class TvComponent implements OnInit {
     });
   }
 
-  getTeam(teamIds: number[]) {
-    for (const team of teamIds) {
-    }
-  }
-
-  updateTimes() {
+  private updateTimes() {
     this.fastest = this.initFastest();
 
     const teamCount: { [key: string]: number } = {};
@@ -78,7 +85,6 @@ export class TvComponent implements OnInit {
       }
 
       if (gender && gender === 'Male') {
-        console.log(time);
         if (
           this.fastest.Male.length === 0 ||
           this.fastest.Male[0].Time === time.Time
@@ -118,10 +124,6 @@ export class TvComponent implements OnInit {
         this.fastest.Team.push({ Team: teamObj, Count: highestCount.Count });
       });
     }
-
-    setTimeout(() => {
-      console.log(this.fastest);
-    }, 2500);
   }
 }
 

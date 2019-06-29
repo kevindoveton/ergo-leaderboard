@@ -22,4 +22,8 @@ export class EventSelectionComponent implements OnInit {
   selectEvent(id: number) {
     this.router.navigate(['/event/:id/signup', { id }]);
   }
+
+  selectTvEvent(id: number) {
+    this.router.navigate(['/event/:id/tv', { id }]);
+  }
 }

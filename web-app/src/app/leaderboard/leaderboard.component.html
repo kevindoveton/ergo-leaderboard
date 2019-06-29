@@ -1,12 +1,10 @@
 <div class="results">
+  {{event?.Name}}
 
-  <leaderboard-result firstName="Kevin" lastName="Doveton" time="12.8" team="Team Doveton" category="M">
-  </leaderboard-result>
-
-  <leaderboard-result firstName="Kevin" lastName="Doveton" time="12.8" team="Team Doveton" category="M">
-  </leaderboard-result>
-
-  <leaderboard-result firstName="Kevin" lastName="Doveton" time="12.8" team="Team Doveton" category="M">
-  </leaderboard-result>
+  <ng-container *ngFor="let time of times">
+    <leaderboard-result [firstName]="time.Participant.FirstName" [lastName]="time.Participant.LastName"
+      [time]="time.Time" [team]="time.Participant.Team" [category]="time.Participant.Gender">
+    </leaderboard-result>
+  </ng-container>
 
 </div>

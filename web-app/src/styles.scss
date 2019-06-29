@@ -77,6 +77,18 @@ form {
   align-items: center;
   flex-flow: row wrap;
 
+  .input-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    label {
+      width: 80px;
+      font-size: 12px;
+      text-align: left;
+    }
+  }
+
   input,
   span,
   button {
@@ -119,7 +131,11 @@ form {
   }
 
   .full {
-    width: 100%;
+    $marginSide: 4px;
+
+    width: calc(100% - #{2 * $marginSide});
+    margin-left: $marginSide;
+    margin-right: $marginSide;
   }
 }
 

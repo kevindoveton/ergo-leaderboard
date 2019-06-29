@@ -44,11 +44,11 @@ export class ApiService {
   }
 
   getTimes(eventId: number) {
-    const timeUrl = environment.api + '/times/';
+    const timeUrl = environment.api + '/times';
 
     return this.http
       .get<ITime[]>(timeUrl, {
-        params: { Event: String(eventId) }
+        params: { Event: String(eventId), _sort: 'Time:ASC' }
       })
       .pipe(take(1));
   }

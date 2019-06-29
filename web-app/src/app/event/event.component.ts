@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { IEvent } from '../api.service';
 
 @Component({
@@ -9,6 +9,12 @@ import { IEvent } from '../api.service';
 export class EventComponent implements OnInit {
   @Input()
   event: IEvent;
+
+  @Output()
+  tvClick = new EventEmitter();
+
+  @Output()
+  signupClick = new EventEmitter();
 
   constructor() {}
 

@@ -10,23 +10,44 @@
     </div>
 
     <form #signupForm="ngForm" (ngSubmit)="submit()">
-      <input class="name" [(ngModel)]="details.firstName" class="half" name="firstName" placeholder="First Name"
-        type="text" />
-      <input class="name" [(ngModel)]="details.lastName" class="half" name="lastName" placeholder="Last Name"
-        type="text" />
 
-      <button type="button" (click)="setCategory(0)" [ngClass]="{selected: details.gender === 'Male'}"
-        class="half">Male</button>
-      <button type="button" (click)="setCategory(1)" [ngClass]="{selected: details.gender === 'Female'}"
-        class="half">Female</button>
+      <div class="input-container half">
+        <label for="firstName">First Name</label>
+        <input class="name" [(ngModel)]="details.firstName" name="firstName" placeholder="First Name" type="text" />
+      </div>
 
-      <input type="text" [(ngModel)]="details.team" name="team" placeholder="Team / Company" class="full">
+      <div class="input-container half">
+        <label for="lastName">Last Name</label>
+        <input class="name" [(ngModel)]="details.lastName" name="lastName" placeholder="Last Name" type="text" />
+      </div>
 
-      <input type="number" [(ngModel)]="details.time" step="0.01" name="time" placeholder="Time" class="full"
-        pattern="^\d*(\.\d{0,2})?$">
-      <input class="email" [(ngModel)]="details.email" name="email" placeholder="Email" type="email" class="full" />
+      <div class="input-container full">
+        <label>Gender</label>
+        <button type="button" (click)="setCategory(0)" [ngClass]="{selected: details.gender === 'Male'}"
+          class="half">Male</button>
+        <button type="button" (click)="setCategory(1)" [ngClass]="{selected: details.gender === 'Female'}"
+          class="half">Female</button>
+      </div>
 
-      <button type="submit">Submit</button>
+      <div class="input-container half">
+        <label for="team">Team</label>
+        <input type="text" [(ngModel)]="details.team" name="team" placeholder="Team / Company">
+      </div>
+
+      <div class="input-container half">
+        <label for="time">Time</label>
+        <input type="number" [(ngModel)]="details.time" step="0.01" name="time" placeholder="Time"
+          pattern="^\d*(\.\d{0,2})?$">
+      </div>
+
+      <div class="input-container full">
+        <label for="email">Email</label>
+        <input class="email" [(ngModel)]="details.email" name="email" placeholder="Email" type="email" />
+      </div>
+
+      <div class="input-container full">
+        <button type="submit">Submit</button>
+      </div>
     </form>
 
     <div class="logo-host">
