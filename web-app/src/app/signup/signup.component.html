@@ -13,12 +13,14 @@
 
       <div class="input-container half">
         <label for="firstName">First Name</label>
-        <input class="name" [(ngModel)]="details.firstName" name="firstName" placeholder="First Name" type="text" />
+        <input class="name" [(ngModel)]="details.firstName" name="firstName" placeholder="First Name" type="text"
+          [ngClass]="{error: errors.firstName}" />
       </div>
 
       <div class="input-container half">
         <label for="lastName">Last Name</label>
-        <input class="name" [(ngModel)]="details.lastName" name="lastName" placeholder="Last Name" type="text" />
+        <input class="name" [(ngModel)]="details.lastName" name="lastName" placeholder="Last Name" type="text"
+          [ngClass]="{error: errors.lastName}" />
       </div>
 
       <div class="input-container full">
@@ -31,18 +33,20 @@
 
       <div class="input-container half">
         <label for="team">Team</label>
-        <input type="text" [(ngModel)]="details.team" name="team" placeholder="Team / Company">
+        <input type="text" [(ngModel)]="details.team" name="team" placeholder="Team / Company"
+          [ngClass]="{error: errors.team}">
       </div>
 
       <div class="input-container half">
         <label for="time">Time</label>
         <input type="number" [(ngModel)]="details.time" step="0.01" name="time" placeholder="Time"
-          pattern="^\d*(\.\d{0,2})?$">
+          pattern="^\d*(\.\d{0,2})?$" [ngClass]="{error: errors.time}">
       </div>
 
       <div class="input-container full">
         <label for="email">Email</label>
-        <input class="email" [(ngModel)]="details.email" name="email" placeholder="Email" type="email" />
+        <input class="email" [(ngModel)]="details.email" name="email" placeholder="Email" type="email"
+          [ngClass]="{error: errors.email}" />
       </div>
 
       <div class="input-container full">

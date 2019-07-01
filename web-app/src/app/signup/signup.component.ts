@@ -21,10 +21,17 @@ export class SignupComponent implements OnInit {
     lastName: '',
     category: 0,
     team: '',
-    time: 15.0,
+    time: '',
     email: '',
     gender: 'Male',
     event: 0
+  };
+  errors = {
+    firstName: false,
+    lastName: false,
+    team: false,
+    time: false,
+    email: false
   };
 
   ngOnInit() {
@@ -41,7 +48,29 @@ export class SignupComponent implements OnInit {
     this.details.gender = id === 0 ? 'Male' : 'Female';
   }
 
+  validateForm(): boolean {
+    this.errors = {
+      firstName: this.details.firstName === '',
+      lastName: this.details.lastName === '',
+      team: this.details.team === '',
+      time: this.details.time === '' || (this.details.time as any) < 0,
+      email: this.details.email === '' || this.details.email.indexOf('@') === -1
+    };
+
+    for (const key of Object.keys(this.errors)) {
+      if (this.errors[key] === true) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
   submit() {
+    if (!this.validateForm()) {
+      return;
+    }
+
     this.api
       .addTime(
         {
@@ -51,7 +80,7 @@ export class SignupComponent implements OnInit {
           Gender: this.details.gender,
           Team: { Name: this.details.team, Event: this.event.id }
         },
-        { Time: this.details.time },
+        { Time: this.details.time as any },
         this.event.id
       )
       .subscribe(val => {

@@ -59,11 +59,24 @@ module.exports = {
       Time: ctx.request.body.Time,
       Event: event.attributes
     });
-    console.log({
-      Participant: participant.attributes,
-      Time: ctx.request.body.Time,
-      Event: event.attributes
-    });
+
+    require('nodemailer')
+      .createTransport({
+        host: 'smtp.postmarkapp.com',
+        port: 2525,
+        secure: false, // true for 465, false for other ports
+        auth: {
+          user: '74503f8b-26db-4732-ad35-e3bd3766a440',
+          pass: '74503f8b-26db-4732-ad35-e3bd3766a440'
+        }
+      })
+      .sendMail({
+        from: '"Kevin Doveton" <newsletters@kdoveton.com>', // sender address
+        to: participant.attributes.Email, // list of receivers
+        subject: 'Hello ✔', // Subject line
+        text: 'Hello world?', // plain text body
+        html: '<b>Hello world?</b>' // html body
+      });
 
     return strapi.services.time.add(ctx.request.body);
   },

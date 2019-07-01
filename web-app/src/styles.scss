@@ -67,15 +67,20 @@ router-outlet {
 }
 
 form {
+  $inputRadius: 8px;
+  $formBackground: rgba(#333333, .333);
   $marginBottom: 8px;
+  $formPadding: 64px;
+  $inputPadding: 8px;
 
-  background: rgba(white, 1);
-  padding: 16px;
+  background: $formBackground;
+  padding: $formPadding;
   border-radius: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-flow: row wrap;
+  border: 1px solid white;
 
   .input-container {
     display: flex;
@@ -104,21 +109,62 @@ form {
   }
 
   input {
-    border: 0;
-    border-bottom: 1px solid #333333;
-    padding: 8px;
-    background: #ffffff;
+    padding: $inputPadding;
     width: 100%;
+    border-radius: $inputRadius;
+    border: 1px solid white;
+    background: transparent;
+    color: white;
+
+    &::placeholder {
+      color: #cccccc;
+    }
   }
 
   button {
     padding: 8px 16px;
     border-radius: 0;
     border: 0;
-    background: #efefef;
+    margin-top: 16px;
+    background: transparent;
+    border-radius: 32px;
+    width: 100px;
+    border: 1px solid white;
+    color: white;
+    transition: .3s all;
+    text-transform: uppercase;
+
+    &[type='submit'] {
+      background: white;
+      color: black;
+    }
 
     &.selected {
       background: map-get($colors, blue);
+    }
+
+    &:hover {
+      cursor: pointer;
+      background: #0037ff;
+      color: white;
+    }
+  }
+
+  .input-container {
+    button {
+      margin-top: 0;
+      border-radius: $inputRadius;
+      &.half {
+        &:first-of-type {
+          margin-left: 0;
+          width: calc(50% - 4px);
+        }
+
+        &:last-of-type {
+          margin-right: 0;
+          width: calc(50% - 4px);
+        }
+      }
     }
   }
 
@@ -139,8 +185,7 @@ form {
   }
 }
 
-.error {
-  input {
-    border-color: red;
-  }
+.error input,
+input.error {
+  border-color: red;
 }
