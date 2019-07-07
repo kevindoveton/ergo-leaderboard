@@ -1,0 +1,10 @@
+<div class="team-selection">
+  <div class="new">
+    <input type="text" [(ngModel)]="newTeamVal">
+    <button class="new" (click)="newTeam()">New</button>
+  </div>
+
+  <div class="item" *ngFor="let t of teams" (click)="changeTeam(t.Name)">
+    {{t.Name}}
+  </div>
+</div>

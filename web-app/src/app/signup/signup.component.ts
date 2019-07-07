@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService, IEvent } from '../api.service';
+import { ApiService, IEvent, ITeam } from '../api.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { take } from 'rxjs/operators';
 
@@ -34,11 +34,19 @@ export class SignupComponent implements OnInit {
     email: false
   };
 
+  teams: ITeam[] = [];
+
+  teamSelectionVisible = false;
+
   ngOnInit() {
     this.details.event = 0;
     this.route.params.pipe(take(1)).subscribe(el => {
       this.api.getEvent(el.id).subscribe(ev => {
         this.event = ev;
+      });
+
+      this.api.getTeams(el.id).subscribe(ev => {
+        this.teams = ev;
       });
     });
   }
@@ -71,6 +79,13 @@ export class SignupComponent implements OnInit {
       return;
     }
 
+    let teamId: number;
+    for (const team of this.teams) {
+      if (team.Name === this.details.team) {
+        teamId = team.id;
+      }
+    }
+
     this.api
       .addTime(
         {
@@ -78,17 +93,20 @@ export class SignupComponent implements OnInit {
           LastName: this.details.lastName,
           Email: this.details.email,
           Gender: this.details.gender,
-          Team: { Name: this.details.team, Event: this.event.id }
+          Team: { id: teamId, Name: this.details.team, Event: this.event.id }
         },
         { Time: this.details.time as any },
         this.event.id
       )
       .subscribe(val => {
-        console.log(val);
         this.router.navigate([
           'event/:id/signup/complete',
           { id: this.event.id }
         ]);
       });
+  }
+
+  chooseTeam() {
+    this.teamSelectionVisible = true;
   }
 }

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import { tap, catchError, map, take, switchMap } from 'rxjs/operators';
-import { of } from 'rxjs';
+import { of, Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -13,6 +13,8 @@ export class ApiService {
   };
 
   constructor(private http: HttpClient) {}
+
+  readonly baseUrl = environment.api;
 
   login(username: string, password: string) {
     const url = environment.api + '/auth/local';
@@ -53,6 +55,16 @@ export class ApiService {
       .pipe(take(1));
   }
 
+  getTeams(eventId: number) {
+    const teamUrl = environment.api + '/teams';
+
+    return this.http
+      .get<ITeam[]>(teamUrl, {
+        params: { Event: String(eventId) }
+      })
+      .pipe(take(1));
+  }
+
   getAllEvents() {
     const eventUrl = environment.api + '/events/';
 
@@ -73,7 +85,21 @@ export class ApiService {
     // create team
     // create participant
     // create time
-    return this.http.post(teamUrl, user.Team).pipe(
+    let teamObs: Observable<ITeam>;
+    if (typeof user.Team === 'number' || user.Team.id) {
+      teamObs = new Observable<ITeam>(obs => {
+        obs.next({
+          id: typeof user.Team === 'number' ? user.Team : user.Team.id,
+          Name: undefined,
+          Event: event
+        });
+        obs.complete();
+      });
+    } else {
+      teamObs = this.http.post<ITeam>(teamUrl, user.Team);
+    }
+
+    return teamObs.pipe(
       take(1),
       switchMap((team: ITeam) => {
         return this.http.post(participantUrl, { ...user, Team: team.id }).pipe(
@@ -131,13 +157,28 @@ export interface ITime {
   Participant?: IParticipant;
 }
 
+export interface IImage {
+  id: number;
+  name: string;
+  hash: string;
+  sha256: string;
+  ext: string;
+  mime: string;
+  size: string;
+  url: string;
+  provider: string;
+  public_id: string;
+  created_at: string;
+  updated_at: string;
+}
+
 export interface ICompany {
   id: number;
   created_at?: Date;
   updated_at?: Date;
 
   Name: string;
-  Logo: string;
+  Logo: IImage;
 }
 
 export interface IEvent {

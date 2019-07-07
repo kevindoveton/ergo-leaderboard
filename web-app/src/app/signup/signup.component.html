@@ -31,9 +31,9 @@
           class="half">Female</button>
       </div>
 
-      <div class="input-container half">
+      <div class="input-container half" (click)="chooseTeam()">
         <label for="team">Team</label>
-        <input type="text" [(ngModel)]="details.team" name="team" placeholder="Team / Company"
+        <input type="text" [ngModel]="details.team" name="team" placeholder="Team / Company"
           [ngClass]="{error: errors.team}">
       </div>
 
@@ -58,4 +58,7 @@
       <img src="./assets/logo.jpg" alt="" class="logo">
     </div>
   </div>
+
+  <app-team-selection [(team)]="details.team" (teamChange)="teamSelectionVisible = false" [teams]="teams"
+    *ngIf="teamSelectionVisible"></app-team-selection>
 </div>

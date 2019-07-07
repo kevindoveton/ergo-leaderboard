@@ -15,7 +15,7 @@ export class TvComponent implements OnInit {
     private route: ActivatedRoute,
     private socket: SocketsService
   ) {}
-
+  baseUrl = this.api.baseUrl;
   event: IEvent;
   times: ITime[];
 
@@ -34,6 +34,7 @@ export class TvComponent implements OnInit {
         .pipe(take(1))
         .subscribe(event => {
           this.event = event;
+          console.log(event.HostCompany.Logo.url);
         });
 
       this.updateLeaderboard(params.id);

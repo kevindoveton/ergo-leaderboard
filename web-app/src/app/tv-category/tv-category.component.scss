@@ -1,4 +1,20 @@
 div.tv-category {
-  background: white;
+  $marginSides: 16px;
+
+  background: rgba(#333333, .333);;
   margin-bottom: 8px;
+  border: 1px solid white;
+  border-radius: 8px;
+  padding: 16px;
+  margin-left: $marginSides;
+  margin-right: $marginSides;
+  // width: calc(100% - #{$marginSides});
+
+  .category {
+    color: #ffffff;
+  }
+
+  .value {
+    color: rgba(#ffffff, 0.8);
+  }
 }

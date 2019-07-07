@@ -14,6 +14,7 @@ import { FormsModule } from '@angular/forms';
 import { EventSelectionComponent } from './event-selection/event-selection.component';
 import { TvCategoryComponent } from './tv-category/tv-category.component';
 import { EventComponent } from './event/event.component';
+import { TeamSelectionComponent } from './team-selection/team-selection.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { EventComponent } from './event/event.component';
     SignupComponent,
     EventSelectionComponent,
     TvCategoryComponent,
-    EventComponent
+    EventComponent,
+    TeamSelectionComponent
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],

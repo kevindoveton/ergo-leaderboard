@@ -185,6 +185,30 @@ form {
   }
 }
 
+.page {
+  .title {
+    display: flex;
+    align-content: center;
+    flex-flow: column;
+
+    h2 {
+      font-size: 32px;
+      color:white;
+      text-align: center;
+    }
+
+    h3 {
+      color: white;
+      text-align: center;
+    }
+
+    img {
+      margin: 16px auto;
+      width: 150px;
+    }
+  }
+}
+
 .error input,
 input.error {
   border-color: red;
