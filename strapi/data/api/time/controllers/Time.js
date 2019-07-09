@@ -71,7 +71,7 @@ module.exports = {
     //     }
     //   })
     //   .sendMail({
-    //     from: '"Kevin Doveton" <newsletters@kdoveton.com>', // sender address
+    //     from: '"Ergo Fitness" <no-reply@ergoactive.events>', // sender address
     //     to: participant.attributes.Email, // list of receivers
     //     subject: 'Hello ✔', // Subject line
     //     text: 'Hello world?', // plain text body
