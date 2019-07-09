@@ -4,12 +4,12 @@
     "default": {
       "settings": {
         "client": "mysql",
-        "host": "db",
+        "host": "localhost",
         "srv": false,
         "port": "3306",
         "database": "db_strapi",
-        "username": "my_user",
-        "password": "my_password",
+        "username": "myuser",
+        "password": "mypassword",
         "ssl": false
       },
       "options": {
