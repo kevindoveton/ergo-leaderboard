@@ -66,7 +66,8 @@ router-outlet {
   padding: 0;
 }
 
-form {
+form,
+.form {
   $inputRadius: 8px;
   $formBackground: rgba(#333333, .333);
   $marginBottom: 8px;
